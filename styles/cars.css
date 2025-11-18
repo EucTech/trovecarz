@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #cfbb08ff;
+  --secondary-color: #333333ff;
+}
+
+ul,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+
+.cars-page {
+      padding: 100px 20px 80px;
+      background: #f9f9f9;
+      min-height: 100vh;
+    }
+    .page-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .page-header h1 {
+      font-size: 42px;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    /* Filter Bar - Beautiful & Responsive */
+    .filter-bar {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .filter-bar input,
+    .filter-bar select {
+      padding: 14px 16px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 16px;
+      background: #f9f9f9;
+    }
+    .filter-bar input::placeholder {
+      color: #999;
+    }
+
+    .loading, .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      font-size: 20px;
+      color: #888;
+      grid-column: 1/-1;
+    }
+    .loading i {
+      font-size: 48px;
+      color: var(--primary-color);
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 34px; }
+      .filter-bar { grid-template-columns: 1fr; }
+    }

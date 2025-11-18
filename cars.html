@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Cars - Trovecarz</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+
+    <!-- Your main CSS (contains all car-card styles) -->
+    <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="stylesheet" href="/styles/cars.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="logo">
+          <img src="/images/logo.png" alt="Trovecarz" class="logo" />
+        </a>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li>
+            <a
+              href="/cars.html"
+              style="color: var(--primary-color); font-weight: bold"
+              >Cars</a
+            >
+          </li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+        <i class="fa-solid fa-bars toggle-bar" id="navToggle"></i>
+      </nav>
+    </header>
+
+    <main class="cars-page">
+      <div class="page-header">
+        <h1>All Cars For Sale</h1>
+        <p>
+          Browse our extensive selection of quality used cars at unbeatable
+          prices.
+        </p>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="filter-bar">
+        <input type="text" id="filterMake" placeholder="Make (e.g. Toyota)" />
+        <input type="text" id="filterModel" placeholder="Model (e.g. Camry)" />
+        <input type="number" id="minYear" placeholder="Min Year (e.g. 2015)" />
+        <input type="number" id="maxPrice" placeholder="Max Price (₦)" />
+        <select id="transmission">
+          <option value="">Any Transmission</option>
+          <option value="automatic">Automatic</option>
+          <option value="manual">Manual</option>
+        </select>
+        <select id="fuelType">
+          <option value="">Any Fuel</option>
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+          <option value="hybrid">Hybrid</option>
+        </select>
+      </div>
+
+      <div id="loading" class="loading">
+        <i class="fa-solid fa-spinner"></i><br /><br />Loading all cars...
+      </div>
+
+      <section class="view-cars">
+        <div class="car-listing" id="carListing">
+          <!-- Cars injected here -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="/" class="logo">
+        <img src="/images/logo.png" alt="Trovecarz" class="logo" />
+      </a>
+      <div class="footer-content">
+        <p>© 2025 Trovecarz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="/scripts/cars.js" defer></script>
+  </body>
+</html>
