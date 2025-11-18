@@ -1,6 +1,6 @@
 
 
- const API = 'http://localhost:3000/cars?limit=200';
+ const API = `${window.ENV.API_URL}/cars?limit=100`;
     const listing = document.getElementById('carListing');
     const loading = document.getElementById('loading');
     let allCars = [];

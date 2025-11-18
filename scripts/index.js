@@ -1,26 +1,36 @@
-// scripts/index.js - FINAL WORKING VERSION (NO ALERT!)
-const API_URL = 'http://localhost:3000/cars';
+// scripts/index.js - WITH LOADER + CLEAN CODE
+const API_URL = `${window.ENV.API_URL}/cars`;
+
 const carListing = document.querySelector('.car-listing');
 const searchForm = document.getElementById('searchForm');
 const searchBtn = document.getElementById('searchBtn');
 
-// Format price (using ₦ for Nigeria)
+// LOADER HTML (Beautiful & Matches Your Design)
+const LOADER_HTML = `
+  <div style="
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--primary-color);
+  ">
+    <i class="fa-solid fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 20px;"></i>
+    <p style="font-size: 18px; font-weight: 500;">Loading cars...</p>
+  </div>
+`;
+
 function formatPrice(price) {
   return `₦${Number(price).toLocaleString()}`;
 }
 
-// CREATE CAR CARD - OPENS car-details.html ON CLICK
+// CREATE CAR CARD (Same as before)
 function createCarCard(car) {
   const card = document.createElement('div');
   card.className = 'car-card';
 
-  const firstImage = car.images && car.images.length > 0 
-    ? car.images[0] 
-    : '/images/car2.jpg';
+  const firstImage = car.images?.[0] || '/images/car2.jpg';
 
   card.innerHTML = `
     <img src="${firstImage}" alt="${car.make} ${car.model}" onerror="this.src='/images/car2.jpg'" />
-
     <div class="car-details">
       <h3>${car.make} ${car.model} ${car.year}</h3>
       <div class="car-d1">
@@ -32,9 +42,7 @@ function createCarCard(car) {
         <span class="car-price">${formatPrice(car.price)}</span>
       </div>
     </div>
-
     <div class="seperator"></div>
-
     <div class="car-d3">
       <div class="car-d4">
         <i class="fa-solid fa-tachometer-alt"></i>
@@ -51,19 +59,19 @@ function createCarCard(car) {
     </div>
   `;
 
-  // Click event to go to details page
-  card.addEventListener('click', (e) => {
-    e.preventDefault();
+  card.addEventListener('click', () => {
     window.location.href = `car-details.html?id=${car.id}`;
   });
-
   card.style.cursor = 'pointer';
   return card;
 }
 
-// Fetch and display cars
+// FETCH CARS WITH LOADER
 async function fetchCars(filters = {}) {
   try {
+    // SHOW LOADER
+    carListing.innerHTML = LOADER_HTML;
+
     const params = new URLSearchParams();
     if (filters.make) params.append('make', filters.make);
     if (filters.model) params.append('model', filters.model);
@@ -73,6 +81,7 @@ async function fetchCars(filters = {}) {
     const response = await fetch(`${API_URL}?${params}`);
     const result = await response.json();
 
+    // HIDE LOADER & SHOW RESULTS
     carListing.innerHTML = '';
 
     if (result.data && result.data.length > 0) {
@@ -80,15 +89,25 @@ async function fetchCars(filters = {}) {
         carListing.appendChild(createCarCard(car));
       });
     } else {
-      carListing.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:40px; color:#666;">No cars found.</p>';
+      carListing.innerHTML = `
+        <p style="grid-column: 1/-1; text-align:center; padding:60px; color:#888; font-size:18px;">
+          <i class="fa-solid fa-car-side" style="font-size:40px; margin-bottom:16px; display:block; opacity:0.5;"></i>
+          No cars found matching your search.
+        </p>
+      `;
     }
   } catch (err) {
     console.error('Error:', err);
-    carListing.innerHTML = '<p style="color:red; grid-column:1/-1; text-align:center;">Failed to load cars. Is backend running?</p>';
+    carListing.innerHTML = `
+      <p style="grid-column:1/-1; text-align:center; padding:60px; color:#e74c3c; font-size:18px;">
+        Failed to load cars.<br>
+        <small>Is your backend running on port 3000?</small>
+      </p>
+    `;
   }
 }
 
-// Search handler
+// SEARCH HANDLER
 searchBtn.addEventListener('click', () => {
   const filters = {
     make: document.getElementById('qMake').value.trim(),
@@ -98,20 +117,21 @@ searchBtn.addEventListener('click', () => {
   fetchCars(filters);
 });
 
-searchForm.addEventListener('submit', (e) => {
+searchForm.addEventListener('submit', e => {
   e.preventDefault();
   searchBtn.click();
 });
 
-// Mobile menu
+// ON PAGE LOAD
 document.addEventListener('DOMContentLoaded', () => {
+  // Mobile menu toggle
   const toggle = document.getElementById('navToggle');
-  const nav = document.querySelector('header nav');
-  if (toggle && nav) {
+  if (toggle) {
     toggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
+      document.querySelector('header nav').classList.toggle('open');
     });
   }
 
+  // Load cars with loader
   fetchCars();
 });

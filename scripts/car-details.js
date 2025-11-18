@@ -4,7 +4,7 @@ const carId = urlParams.get('id');
 if (!carId) {
   document.body.innerHTML = "<h1>Car not found</h1><a href='index.html'>Go back</a>";
 } else {
-  fetch(`http://localhost:3000/cars/${carId}`)
+  fetch(`${window.ENV.API_URL}/cars/${carId}`)
     .then(res => res.json())
     .then(car => {
       // Fill car details
