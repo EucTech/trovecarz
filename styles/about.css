@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #cfbb08ff;
+  --secondary-color: #333333ff;
+}
+
+ul,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.about-page {
+  padding: 100px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #333;
+}
+.about-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.about-hero h1 {
+  font-size: 42px;
+  color: #cfbb08;
+  margin-bottom: 16px;
+}
+.about-hero p {
+  font-size: 18px;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.section {
+  margin: 80px 0;
+}
+.section h2 {
+  font-size: 32px;
+  color: #cfbb08;
+  margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 12px;
+}
+.section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 4px;
+  background: #cfbb08;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.grid-2 img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin: 60px 0;
+  text-align: center;
+}
+.stat-item h3 {
+  font-size: 48px;
+  color: #cfbb08;
+  margin: 0;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.team-image {
+  text-align: center;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.team-image img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 5px solid #cfbb08;
+}
+
+.team-image h4 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.team-image p {
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .about-hero h1 {
+    font-size: 34px;
+  }
+}
