@@ -19,7 +19,7 @@ Images and the demo video are in the `images/` folder (used as `poster` for the 
 
 ## Quick start (local testing)
 
-1. Create a file on the root folder called `.env.js` and add the api in it
+1. Create a file on the root folder called `env.js` and add the api in it
    > window.ENV = {
    > API_URL: "api....**\***"
    > };
